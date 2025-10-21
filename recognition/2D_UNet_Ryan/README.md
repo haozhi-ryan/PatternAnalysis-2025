@@ -5,6 +5,7 @@ Segmented the HipMRI Study prostate label from processed **2D NIfTI slices** usi
 ---
 
 ## Project Structure
+```
 report/
 ├─ dataset.py # NIfTI loaders, pairing case_* with seg_*; z-score; DataLoaders
 ├─ modules.py # 2D Improved U-Net + Dice metrics/losses; build_model()
@@ -13,3 +14,11 @@ report/
 ├─ checkpoints/ # saved model (best.ckpt)
 ├─ preds/ # outputs from predict.py (created on first run)
 └─ README.md
+```
+
+---
+
+## Environment
+```bash
+# login to Rangpur, then:
+conda activate torch
