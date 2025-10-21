@@ -8,6 +8,9 @@ import torch
 from torch.utils.data import Dataset, DataLoader
 import random
 
+import torch.nn.functional as F
+
+
 # ----- helpers -----
 def _zscore(x: np.ndarray, eps: float = 1e-8) -> np.ndarray:
     mu = x.mean()
@@ -87,6 +90,7 @@ class HipMRISlicesDataset(Dataset):
         target_label: int = 4,    # change if your prostate label id differs
         augment: bool = False,
         seed: Optional[int] = None,
+        fixed_size: Optional[tuple[int, int]] = (256, 128)
     ):
         self.image_dir = Path(image_dir)
         self.mask_dir = Path(mask_dir)
@@ -94,6 +98,7 @@ class HipMRISlicesDataset(Dataset):
         self.binary = binary
         self.target_label = target_label
         self.augment = augment
+        self.fixed_size = fixed_size
         if seed is not None:
             random.seed(seed)
 
@@ -139,6 +144,24 @@ class HipMRISlicesDataset(Dataset):
                 msk_t = torch.from_numpy(msk_np.copy()).long()
 
         img_t = torch.from_numpy(img[None, ...].copy())  # [1,H,W] float32
+
+        if self.fixed_size is not None:
+          H, W = self.fixed_size
+          # resize image (bilinear)
+          img_t = F.interpolate(img_t.unsqueeze(0),
+                                size=(H, W),
+                                mode="bilinear",
+                                align_corners=False).squeeze(0)
+          # resize mask (nearest)
+          if self.binary:
+              msk_t = F.interpolate(msk_t.unsqueeze(0).float(),
+                                    size=(H, W),
+                                    mode="nearest").squeeze(0).to(torch.uint8)
+          else:
+              msk_t = F.interpolate(msk_t.unsqueeze(0).unsqueeze(0).float(),
+                                    size=(H, W),
+                                    mode="nearest").squeeze(0).squeeze(0).long()
+
         return img_t, msk_t, img_path.stem  # include ID for bookkeeping
 
 # ----- convenience factory for your exact folder layout -----
