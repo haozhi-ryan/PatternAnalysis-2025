@@ -58,33 +58,19 @@ Outputs:
 python predict.py --target_label 1 --checkpoint checkpoints/best.ckpt --outdir preds
 ```
 Outputs:
-
-preds/summary.txt (mean Dice)
-
-preds/metrics.csv (per-slice Dice)
-
-preds/overlays/*_overlay.png (image + GT + prediction)
-
-preds/pred_masks/*_pred.npy (binary masks)
+- `preds/summary.txt` (mean Dice)
+- `preds/metrics.csv` (per-slice Dice)
+- `preds/overlays/*_overlay.png` (image + GT + prediction)
+- `preds/pred_masks/*_pred.npy` (binary masks)
 
 Results
-
-Validation best Dice: 0.8259
-
-Test mean Dice (prostate): 0.7954
-
-See qualitative overlays in preds/overlays/.
+- Validation best Dice: 0.8259
+- Test mean Dice (prostate): 0.7954
 
 ## Training Details
-
-Model: 2D Improved U-Net (InstanceNorm + LeakyReLU, strided-conv down, transposed-conv up)
-
-Loss: BCEWithLogits + Dice (0.5 weight)
-
-Optimizer: AdamW (lr=1e-3, wd=1e-4)
-
-Scheduler: ReduceLROnPlateau (monitor val Dice)
-
-Inputs: single-channel slices (z-score normalized)
-
-Binary training on prostate label (--target_label 1)
+- Model: 2D Improved U-Net (InstanceNorm + LeakyReLU, strided-conv down, transposed-conv up)
+- Loss: BCEWithLogits + Dice (0.5 weight)
+- Optimizer: AdamW (lr=1e-3, wd=1e-4)
+- Scheduler: ReduceLROnPlateau (monitor val Dice)
+- Inputs: single-channel slices (z-score normalized)
+- Binary training on prostate label (--target_label 1)
