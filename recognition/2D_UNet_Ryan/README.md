@@ -45,12 +45,16 @@ Sanity overfit
 ```bash
 python train.py --overfit_batches 2 --epochs 10 --batch_size 4 --num_workers 0 --target_label 1
 ```
-#### Full training (example)
+### Full training 
 Input:
 ```bash
 python train.py --epochs 40 --batch_size 16 --target_label 1
 ```
 Outputs:
+- checkpoints saved to checkpoints/best.ckpt
+- per-epoch logs (train/val Dice)
+  
+Example Output:
 ```bash
 Device: cuda
 Epoch 001 | loss 0.2144 | trainDice 0.8677 | valDice 0.9310 | 78.4s
@@ -119,6 +123,15 @@ Outputs:
 - `preds/metrics.csv` (per-slice Dice)
 - `preds/overlays/*_overlay.png` (image + GT + prediction)
 - `preds/pred_masks/*_pred.npy` (binary masks)
+
+Example Output:
+```bash
+Device: cpu
+Loaded checkpoint: checkpoints/best.ckpt (valDice=0.9773)
+/home/Student/s4696809/miniconda3/envs/torch/lib/python3.13/site-packages/torch/utils/data/dataloader.py:665: UserWarning: 'pin_memory' argument is set as true but no accelerator is found, then device pinned memory won't be used.
+  warnings.warn(warn_msg)
+Test mean Dice: 0.9817
+```
 
 Results
 - Validation best Dice: 0.8259
