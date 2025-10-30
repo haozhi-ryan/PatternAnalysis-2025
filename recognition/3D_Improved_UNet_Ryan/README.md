@@ -47,7 +47,25 @@ python train.py --epochs 17 --batch_size 2 --num_workers 1 --amp
 ```
 #### Output:
 ```bash
-(torch) s4696809@login0:~/report_hard_difficulty$ cat runner_train.out [device] cuda [model] params: 47,325,761 [001] loss=0.2688 val_dice=0.8134 lr=2.995e-04 t=433.11s [002] loss=0.2186 val_dice=0.8395 lr=2.982e-04 t=419.53s [003] loss=0.1635 val_dice=0.8673 lr=2.959e-04 t=389.42s [004] loss=0.1285 val_dice=0.8899 lr=2.927e-04 t=402.64s [005] loss=0.1174 val_dice=0.9074 lr=2.886e-04 t=417.47s [006] loss=0.1039 val_dice=0.9128 lr=2.837e-04 t=421.88s [007] loss=0.0957 val_dice=0.9227 lr=2.779e-04 t=415.84s [008] loss=0.0833 val_dice=0.9327 lr=2.714e-04 t=417.48s [009] loss=0.0768 val_dice=0.9387 lr=2.641e-04 t=400.64s [010] loss=0.0711 val_dice=0.9431 lr=2.561e-04 t=397.76s [011] loss=0.0676 val_dice=0.9426 lr=2.474e-04 t=398.26s [012] loss=0.0706 val_dice=0.9386 lr=2.382e-04 t=403.24s [013] loss=0.0645 val_dice=0.9398 lr=2.284e-04 t=409.86s [014] loss=0.0602 val_dice=0.9476 lr=2.181e-04 t=404.18s [015] loss=0.0546 val_dice=0.9462 lr=2.074e-04 t=414.47s [016] loss=0.0533 val_dice=0.9512 lr=1.964e-04 t=400.37s [017] loss=0.0520 val_dice=0.9490 lr=1.850e-04 t=363.0s
+(torch) s4696809@login0:~/report_hard_difficulty$ cat runner_train.out
+[device] cuda [model] params: 47,325,761
+[001] loss=0.2688 val_dice=0.8134 lr=2.995e-04 t=433.11s
+[002] loss=0.2186 val_dice=0.8395 lr=2.982e-04 t=419.53s
+[003] loss=0.1635 val_dice=0.8673 lr=2.959e-04 t=389.42s
+[004] loss=0.1285 val_dice=0.8899 lr=2.927e-04 t=402.64s
+[005] loss=0.1174 val_dice=0.9074 lr=2.886e-04 t=417.47s
+[006] loss=0.1039 val_dice=0.9128 lr=2.837e-04 t=421.88s
+[007] loss=0.0957 val_dice=0.9227 lr=2.779e-04 t=415.84s
+[008] loss=0.0833 val_dice=0.9327 lr=2.714e-04 t=417.48s
+[009] loss=0.0768 val_dice=0.9387 lr=2.641e-04 t=400.64s
+[010] loss=0.0711 val_dice=0.9431 lr=2.561e-04 t=397.76s
+[011] loss=0.0676 val_dice=0.9426 lr=2.474e-04 t=398.26s
+[012] loss=0.0706 val_dice=0.9386 lr=2.382e-04 t=403.24s
+[013] loss=0.0645 val_dice=0.9398 lr=2.284e-04 t=409.86s
+[014] loss=0.0602 val_dice=0.9476 lr=2.181e-04 t=404.18s
+[015] loss=0.0546 val_dice=0.9462 lr=2.074e-04 t=414.47s
+[016] loss=0.0533 val_dice=0.9512 lr=1.964e-04 t=400.37s
+[017] loss=0.0520 val_dice=0.9490 lr=1.850e-04 t=363.00s
 ```
 
 ## Inference
