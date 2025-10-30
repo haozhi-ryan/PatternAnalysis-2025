@@ -1,4 +1,4 @@
-<img width="983" height="40" alt="image" src="https://github.com/user-attachments/assets/e75becc1-cab6-4f03-880d-16a147278c17" /><img width="737" height="40" alt="image" src="https://github.com/user-attachments/assets/09282ca9-1c9e-43c0-b399-8ab32b2f6dcf" /><img width="737" height="40" alt="image" src="https://github.com/user-attachments/assets/92c36b15-c9fa-4f68-9a03-c4a097a5b908" /># 3D Improved UNet for Prostate MRI Segmentation
+# 3D Improved UNet for Prostate MRI Segmentation
 
 ## Overview
 This project implements a **3D Improved UNet** architecture to segment prostate regions from MRI volumes in the **HipMRI_Study_open** dataset. The goal is to achieve accurate voxel-level segmentation with a **minimum Dice similarity coefficient of 0.7** across all labels. The model addresses the challenge of learning from limited medical data by leveraging **3D convolutions**, **residual connections**, and **data augmentation** to improve spatial consistency and generalization. This segmentation aids in automating prostate boundary identification, an essential step in diagnosis, treatment planning, and volumetric analysis.
