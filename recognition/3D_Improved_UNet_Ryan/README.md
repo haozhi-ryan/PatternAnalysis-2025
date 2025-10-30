@@ -26,6 +26,12 @@ All scripts are expected to be executed from the following root directory:
 ```bash
 /home/Student/s4696809/report_hard_difficulty/
 ```
+## Environment
+```bash
+# login to Rangpur, then:
+conda activate torch
+```
+
 ## Dataset & Pre-processing
 The dataset consists of 3D NIfTI (.nii/.nii.gz) prostate MRI volumes (semantic_MRs) and their corresponding label masks (semantic_labels_only).
 Each volume undergoes z-score intensity normalization to standardize voxel distributions:
