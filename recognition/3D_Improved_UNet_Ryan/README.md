@@ -9,11 +9,6 @@ This project implements a **3D Improved UNet** architecture to segment prostate 
 The model builds upon the original **3D UNet** by incorporating **residual blocks**, **Group Normalization**, and **LeakyReLU** activations for smoother gradient flow and better stability on smaller batch sizes. The encoder progressively downsamples volumetric features, while the decoder upsamples and fuses them with corresponding high-resolution features via skip connections.  
 The training pipeline uses **patch-based sampling** for memory efficiency, while inference reconstructs **full 3D volumes**. Dice and BCE-Dice losses guide optimization, ensuring balance between overlap accuracy and boundary precision.
 
-<div align="center">
-  <img src="https://raw.githubusercontent.com/mateuszbuda/brain-segmentation-pytorch/master/docs/unet3d_architecture.png" width="600" alt="UNet3D architecture diagram">
-  <p><em>Figure 1. Simplified 3D UNet architecture (illustration adapted from UNet3D).</em></p>
-</div>
-
 ---
 
 ## Dependencies
