@@ -76,16 +76,62 @@ Runs inference on full 3D test volumes and saves predicted segmentation masks as
 
 ### Example Input & Output
 **Input:** 3D MRI volume (downsampled prostate scan)  
+```bash
+python predict.py --ckpt runs_unet3d/checkpoint_best.pt --outdir predictions_unet3d --device cpu
+```
 **Output:** Binary segmentation mask highlighting the prostate region  
 ```bash
-[model] params: 47,325,761
-[J026_Week0_LFOV] dice=0.9539 voxels(pred=1)=3321383
-[J026_Week1_LFOV] dice=0.9492 voxels(pred=1)=2857973
-[M030_Week5_LFOV] dice=0.9538 voxels(pred=1)=3024402
-[N010_Week7_LFOV] dice=0.9641 voxels(pred=1)=3198632
-[O025_Week4_LFOV] dice=0.9633 voxels(pred=1)=2985943
-[V027_Week2_LFOV] dice=0.9619 voxels(pred=1)=2728240
-[summary] test mean Dice = 0.9581
+[J026_Week0_LFOV] dice=0.9539  voxels(pred=1)=3321383
+[J026_Week1_LFOV] dice=0.9492  voxels(pred=1)=2857973
+[J026_Week2_LFOV] dice=0.9631  voxels(pred=1)=2751313
+[J026_Week3_LFOV] dice=0.9637  voxels(pred=1)=2858377
+[J026_Week4_LFOV] dice=0.9601  voxels(pred=1)=2806152
+[J026_Week5_LFOV] dice=0.9505  voxels(pred=1)=2916373
+[J026_Week6_LFOV] dice=0.9592  voxels(pred=1)=2963662
+[J026_Week7_LFOV] dice=0.9617  voxels(pred=1)=2819741
+[M020_Week0_LFOV] dice=0.9640  voxels(pred=1)=2903033
+[M020_Week1_LFOV] dice=0.9615  voxels(pred=1)=2656414
+[M020_Week2_LFOV] dice=0.9619  voxels(pred=1)=2701785
+[M020_Week3_LFOV] dice=0.9615  voxels(pred=1)=2684078
+[M030_Week0_LFOV] dice=0.9662  voxels(pred=1)=3416224
+[M030_Week1_LFOV] dice=0.9645  voxels(pred=1)=3011396
+[M030_Week2_LFOV] dice=0.9660  voxels(pred=1)=2989830
+[M030_Week3_LFOV] dice=0.9626  voxels(pred=1)=3029955
+[M030_Week4_LFOV] dice=0.9635  voxels(pred=1)=2930033
+[M030_Week5_LFOV] dice=0.9538  voxels(pred=1)=3024402
+[N010_Week0_LFOV] dice=0.9360  voxels(pred=1)=3982734
+[N010_Week1_LFOV] dice=0.9515  voxels(pred=1)=3381148
+[N010_Week2_LFOV] dice=0.9636  voxels(pred=1)=3213733
+[N010_Week3_LFOV] dice=0.9525  voxels(pred=1)=3405778
+[N010_Week4_LFOV] dice=0.9585  voxels(pred=1)=3296862
+[N010_Week5_LFOV] dice=0.9517  voxels(pred=1)=3395199
+[N010_Week6_LFOV] dice=0.9612  voxels(pred=1)=3308387
+[N010_Week7_LFOV] dice=0.9641  voxels(pred=1)=3198632
+[O025_Week0_LFOV] dice=0.9572  voxels(pred=1)=3382709
+[O025_Week1_LFOV] dice=0.9634  voxels(pred=1)=2814549
+[O025_Week2_LFOV] dice=0.9629  voxels(pred=1)=2809803
+[O025_Week3_LFOV] dice=0.9636  voxels(pred=1)=2843129
+[O025_Week4_LFOV] dice=0.9633  voxels(pred=1)=2985943
+[O025_Week5_LFOV] dice=0.9611  voxels(pred=1)=2880774
+[O025_Week6_LFOV] dice=0.9567  voxels(pred=1)=3145801
+[O025_Week7_LFOV] dice=0.9635  voxels(pred=1)=2992489
+[V027_Week0_LFOV] dice=0.9472  voxels(pred=1)=3045115
+[V027_Week1_LFOV] dice=0.9631  voxels(pred=1)=2719551
+[V027_Week2_LFOV] dice=0.9619  voxels(pred=1)=2728240
+[V027_Week3_LFOV] dice=0.9606  voxels(pred=1)=2664816
+[V027_Week4_LFOV] dice=0.9565  voxels(pred=1)=2733652
+[V027_Week5_LFOV] dice=0.9565  voxels(pred=1)=2699486
+[V027_Week6_LFOV] dice=0.9634  voxels(pred=1)=2689906
+[V027_Week7_LFOV] dice=0.9588  voxels(pred=1)=2726130
+[W029_Week0_LFOV] dice=0.9641  voxels(pred=1)=3348583
+[W029_Week1_LFOV] dice=0.9622  voxels(pred=1)=3178312
+[W029_Week2_LFOV] dice=0.9637  voxels(pred=1)=2928317
+[W029_Week3_LFOV] dice=0.9618  voxels(pred=1)=3176704
+[W029_Week4_LFOV] dice=0.9569  voxels(pred=1)=3257398
+[W029_Week5_LFOV] dice=0.9607  voxels(pred=1)=3163781
+[W029_Week6_LFOV] dice=0.9637  voxels(pred=1)=3153926
+[W029_Week7_LFOV] dice=0.9601  voxels(pred=1)=3212586
+[summary] test mean Dice = 0.9596
 ```
 ## Results
 - The 3D Improved UNet3D achieved highly consistent Dice values (0.93–0.97) across multiple weekly scans.
