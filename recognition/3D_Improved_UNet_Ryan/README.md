@@ -11,6 +11,16 @@ The training pipeline uses **patch-based sampling** for memory efficiency, while
 
 ---
 
+## Dependencies
+| Package | Version |
+|----------|----------|
+| Python | 3.10+ |
+| PyTorch | 2.2.0 |
+| nibabel | 5.2.0 |
+| numpy | 1.26.0 |
+| argparse | 1.4.0 |
+| tqdm | 4.66.0 |
+
 ## Directory Structure
 All scripts are expected to be executed from the following root directory:
 ```bash
