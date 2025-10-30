@@ -3,6 +3,18 @@
 
 Segmented the HipMRI Study prostate label from processed **2D NIfTI slices** using an **Improved U-Net** (InstanceNorm + LeakyReLU, strided-conv downs, transposed-conv ups) with **BCE+Dice** loss. Achieved **Test Dice = 0.7954** (≥ 0.75 target).
 
+## Overview — Problem & Algorithm
+Prostate cancer diagnosis and treatment planning rely on accurate localisation of the prostate gland in MRI scans. Manual segmentation by radiologists is time-consuming, inconsistent between experts, and difficult to scale across thousands of images. This project automates that task using the **HipMRI Study**’s processed **2D NIfTI slices**, where each slice is treated as a single-channel image. The segmentation is performed with an **Improved 2D U-Net**, an encoder–decoder convolutional network designed for biomedical image segmentation. It extends the classic U-Net by replacing BatchNorm with **Instance Normalisation** (for robustness to small batch sizes and scanner intensity variations) and by using **LeakyReLU** activations to prevent dead neurons. The network is trained using a combined **Binary Cross-Entropy + Dice** loss to penalise both pixel-wise classification errors and region-overlap mismatches. The goal is to achieve a **minimum Dice coefficient of 0.75** on the prostate label of the held-out test set, which the model surpassed with a final **Test Dice = 0.7954**.
+
+## How It Works — Architecture & Training
+The 2D Improved U-Net follows a symmetric **encoder–decoder** architecture.  
+- **Encoder:** successive 3×3 convolutions with stride 2 progressively downsample the feature maps while increasing the number of channels, extracting semantic information from the input slices.  
+- **Decoder:** **transposed convolutions** upsample these features, restoring spatial resolution. Skip connections concatenate encoder and decoder features at each depth, preserving fine boundary details that are crucial for organ contours.  
+- **Normalisation & Activation:** **InstanceNorm** normalises each slice independently, reducing contrast variability between patients, while **LeakyReLU** maintains gradient flow even for negative activations.  
+- **Loss & Optimisation:** the **BCE + Dice** composite loss balances class imbalance and shape accuracy; training uses **AdamW** with learning-rate scheduling.  
+- **Pre-processing:** each image undergoes **z-score intensity normalisation** to zero-centre voxel values, and all slices are resized to a consistent spatial resolution.  
+- **Data Splits:** we adopt the predefined `keras_slices_*` train/validate/test folders supplied with the HipMRI dataset to ensure consistent, non-overlapping patient splits and reproducible evaluation.  
+
 ---
 
 ## Project Structure
