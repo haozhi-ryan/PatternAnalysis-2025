@@ -1,5 +1,5 @@
 # 3D Improved UNet for Prostate MRI Segmentation 
-# Task 7 - Hard Difficulty (3D Improved UNet)
+# Task 7 - Hard Difficulty
 ## Overview
 This project implements a **3D Improved UNet** architecture to segment prostate regions from MRI volumes in the **HipMRI_Study_open** dataset. The goal is to achieve accurate voxel-level segmentation with a **minimum Dice similarity coefficient of 0.7** across all labels. The model addresses the challenge of learning from limited medical data by leveraging **3D convolutions**, **residual connections**, and **data augmentation** to improve spatial consistency and generalization. This segmentation aids in automating prostate boundary identification, an essential step in diagnosis, treatment planning, and volumetric analysis.
 
