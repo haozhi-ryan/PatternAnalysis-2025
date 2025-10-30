@@ -1,4 +1,5 @@
 # HipMRI Prostate Segmentation (2D Improved U-Net)
+# Task 3 - Normal Difficulty
 
 Segmented the HipMRI Study prostate label from processed **2D NIfTI slices** using an **Improved U-Net** (InstanceNorm + LeakyReLU, strided-conv downs, transposed-conv ups) with **BCE+Dice** loss. Achieved **Test Dice = 0.7954** (≥ 0.75 target).
 
