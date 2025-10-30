@@ -1,4 +1,4 @@
-# 3D Improved UNet for Prostate MRI Segmentation
+<img width="983" height="40" alt="image" src="https://github.com/user-attachments/assets/e75becc1-cab6-4f03-880d-16a147278c17" /><img width="737" height="40" alt="image" src="https://github.com/user-attachments/assets/09282ca9-1c9e-43c0-b399-8ab32b2f6dcf" /><img width="737" height="40" alt="image" src="https://github.com/user-attachments/assets/92c36b15-c9fa-4f68-9a03-c4a097a5b908" /># 3D Improved UNet for Prostate MRI Segmentation
 
 ## Overview
 This project implements a **3D Improved UNet** architecture to segment prostate regions from MRI volumes in the **HipMRI_Study_open** dataset. The goal is to achieve accurate voxel-level segmentation with a **minimum Dice similarity coefficient of 0.7** across all labels. The model addresses the challenge of learning from limited medical data by leveraging **3D convolutions**, **residual connections**, and **data augmentation** to improve spatial consistency and generalization. This segmentation aids in automating prostate boundary identification, an essential step in diagnosis, treatment planning, and volumetric analysis.
@@ -21,11 +21,11 @@ The training pipeline uses **patch-based sampling** for memory efficiency, while
 | argparse | 1.4.0 |
 | tqdm | 4.66.0 |
 
-Install all dependencies with:
+## Directory Structure
+All scripts are expected to be executed from the following root directory:
 ```bash
-pip install torch nibabel numpy tqdm
+/home/Student/s4696809/report_hard_difficulty/
 ```
-
 ## Dataset & Pre-processing
 The dataset consists of 3D NIfTI (.nii/.nii.gz) prostate MRI volumes (semantic_MRs) and their corresponding label masks (semantic_labels_only).
 Each volume undergoes z-score intensity normalization to standardize voxel distributions:
@@ -46,11 +46,16 @@ This ensures independent evaluation across patients, improving clinical reliabil
 ## Usage
 ### Training
 ```bash
-python train.py --epochs 1 --batch_size 2 --lr 1e-4 --amp
+python train.py --epochs 1 --batch_size 2 --amp
 ```
 Trains the 3D Improved UNet using patch-based sampling and logs validation Dice after each epoch. Best model checkpoints are automatically saved. 1 epoch is enough to produce a Dice coefficient of 0.81.
 
-### Example - training with 40 epochs
+### Example - training with 17 epochs
+#### Input:
+```bash
+python train.py --epochs 17 --batch_size 2 --num_workers 1 --amp
+```
+#### Output:
 ```bash
 (torch) s4696809@login0:~/report_hard_difficulty$ cat runner_train.out [device] cuda [model] params: 47,325,761 [001] loss=0.2688 val_dice=0.8134 lr=2.995e-04 t=433.11s [002] loss=0.2186 val_dice=0.8395 lr=2.982e-04 t=419.53s [003] loss=0.1635 val_dice=0.8673 lr=2.959e-04 t=389.42s [004] loss=0.1285 val_dice=0.8899 lr=2.927e-04 t=402.64s [005] loss=0.1174 val_dice=0.9074 lr=2.886e-04 t=417.47s [006] loss=0.1039 val_dice=0.9128 lr=2.837e-04 t=421.88s [007] loss=0.0957 val_dice=0.9227 lr=2.779e-04 t=415.84s [008] loss=0.0833 val_dice=0.9327 lr=2.714e-04 t=417.48s [009] loss=0.0768 val_dice=0.9387 lr=2.641e-04 t=400.64s [010] loss=0.0711 val_dice=0.9431 lr=2.561e-04 t=397.76s [011] loss=0.0676 val_dice=0.9426 lr=2.474e-04 t=398.26s [012] loss=0.0706 val_dice=0.9386 lr=2.382e-04 t=403.24s [013] loss=0.0645 val_dice=0.9398 lr=2.284e-04 t=409.86s [014] loss=0.0602 val_dice=0.9476 lr=2.181e-04 t=404.18s [015] loss=0.0546 val_dice=0.9462 lr=2.074e-04 t=414.47s [016] loss=0.0533 val_dice=0.9512 lr=1.964e-04 t=400.37s [017] loss=0.0520 val_dice=0.9490 lr=1.850e-04 t=363.0s
 ```
